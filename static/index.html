@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Chess Team</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <span class="brand-mark">&#9822;</span>
+      <div>
+        <h1>AI Chess Team</h1>
+        <div class="subtitle">You &amp; Kai <span class="vs">vs</span> Viktor &amp; Mira</div>
+      </div>
+    </div>
+    <div id="statusPill"><span id="statusDot" class="dot"></span><span id="status">Connecting&hellip;</span></div>
+    <div class="header-actions">
+      <button id="voiceBtn" class="ghost" aria-pressed="false" title="Toggle voice narration">&#128263; Voice</button>
+      <button id="newGameBtn" class="primary">New game</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="panel team-panel">
+      <div class="panel-head">
+        <span class="avatar kai">K</span>
+        <div class="panel-titles">
+          <h2>Your team &middot; White</h2>
+          <div id="kaiTyping" class="typing hidden"><span></span><span></span><span></span></div>
+        </div>
+      </div>
+      <div id="chat" class="log"></div>
+      <div id="suggestion" class="suggestion hidden"></div>
+      <form id="chatForm">
+        <button type="button" id="micBtn" title="Speak - moves get played, chat goes to Kai">&#127908;</button>
+        <input id="chatInput" placeholder="Talk to Kai, or press the mic&hellip;" autocomplete="off">
+        <button type="submit" class="send">Send</button>
+      </form>
+    </section>
+
+    <section class="board-col">
+      <div class="board-frame">
+        <div id="capturedTop" class="captured"></div>
+        <div id="board" aria-label="Chess board"></div>
+        <div id="capturedBottom" class="captured"></div>
+      </div>
+      <div class="controls">
+        <form id="moveForm">
+          <input id="moveInput" placeholder="Type a move: e4, Nf3, e2e4&hellip;" autocomplete="off">
+          <button type="submit">Play</button>
+        </form>
+        <div class="btn-row">
+          <button id="suggestBtn">Ask Kai for a suggestion</button>
+          <button id="kaiPlayBtn">Kai, play our move</button>
+        </div>
+        <div class="toggles">
+          <label class="pill"><input type="checkbox" id="autoKaiToggle"><span>Auto: Kai plays</span></label>
+          <label class="pill"><input type="checkbox" id="avaToggle" checked><span>2v2: AI plays me (spectate)</span></label>
+        </div>
+      </div>
+      <ol id="moveList"></ol>
+    </section>
+
+    <section class="panel opp-panel">
+      <div class="panel-head">
+        <span class="avatar viktor">V</span>
+        <span class="avatar mira">M</span>
+        <div class="panel-titles">
+          <h2>Opponent table &middot; Black</h2>
+          <div id="oppTyping" class="typing hidden"><span></span><span></span><span></span></div>
+        </div>
+      </div>
+      <div id="oppFeed" class="log"></div>
+    </section>
+  </main>
+
+  <div id="toast" class="hidden"></div>
+
+  <div id="gameOver" class="modal hidden">
+    <div class="modal-card">
+      <div class="modal-icon" id="goIcon">&#9812;</div>
+      <h2 id="goTitle">Checkmate</h2>
+      <p id="goText">Your team wins!</p>
+      <button id="goRematch" class="primary">Rematch</button>
+    </div>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
